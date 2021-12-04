@@ -1,0 +1,468 @@
+---
+// Component Imports
+import H1 from '../components/H1.astro';
+import Feature from '../components/Feature.astro';
+import Terminal from '../components/Terminal.astro';
+
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+<html class="bg-almost-black text-white font-body" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>Pantheon | Sign up</title>
+    <link rel="stylesheet" type="text/css" href={Astro.resolve("../styles/global.css")}>
+  </head>
+
+  <body class="mx-auto">
+    <nav class="flex mx-auto flex-row items-center justify-between max-w-screen-xl py-6 md:py-12 px-4">
+      <a href="/">
+        <img src="/images/logo.svg" alt="Pantheon">
+      </a>
+      <div class="flex flex-row items-center space-x-2">
+      <h4 class="opacity-50 hidden sm:block font-sans">Already a member?</h4>
+      <a class="font-bold text-sm sm:text-base px-3 py-2 bg-white bg-opacity-0 hover:bg-opacity-5 rounded-lg active:bg-opacity-10 transition ease duration-200" href="#">Login</a>
+      </div>
+    </nav>
+
+    <main class="mx-auto mt-6 md:mt-12 max-w-screen-xl flex flex-col md:flex-row gap-14 w-full transition duration-500 px-4">
+      <aside class="w-full mt-6 transition-all ease duration-500 transform-gpu scale-100 opacity-100 features origin-right flex-shrink order-last md:order-first">
+          <H1>The best product you’ll never use.</H1>
+
+          <ul class="mt-12">
+          <Feature icon="speed" title="Built for speed" description="Synchronized in real-time across all users. No spinners or waiting."></Feature>
+          <Feature icon="works-offline" title="Works Offline" description="Access and make changes with or without internet access."></Feature>
+          <Feature icon="software-teams" title="Ready for software teams" description="Created by software people for software product teams."></Feature>
+          </ul>
+        
+      </aside>
+      <div class="w-full flex justify-center transition-all duration-500 signup flex-grow">
+        <Terminal />
+      </div>
+      
+    </main>
+    <script src="/js/granim.min.js"></script>
+    <script src="https://unpkg.com/typeit@8.0.7/dist/index.umd.js"></script>
+    <script src="/js/asciimorph.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" integrity="sha512-TZlMGFY9xKj38t/5m2FzJ+RM/aD5alMHDe26p0mYUMoCF5G7ibfHUQILq0qQPV3wlsnCwL+TPRNK4vIWGLOkUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+    let emailInput = document.querySelector('#email'),
+        emailButton = document.querySelector('#action-email'),
+        emailSuccessIcon = document.querySelector('.icon-success--email'),
+        emailErrorMsg = document.querySelector('.error-message--email'),
+        emailCaret = document.querySelector('.caret--email'),
+        emailErrorIcon = document.querySelector('.icon-error--email');
+
+    let nameInput = document.querySelector('#name'),
+        nameButton = document.querySelector('#action-name'),
+        nameSuccessIcon = document.querySelector('.icon-success--name'),
+        nameErrorIcon = document.querySelector('.icon-error--name'),
+        nameErrorMsg = document.querySelector('.error-message--name'),
+        nameCaret = document.querySelector('.caret--name');
+
+    let passwordInput = document.querySelector('#password'),
+        passwordButton = document.querySelector('#action-password'),
+        submitButton = document.querySelector('.submit-button'),
+        passwordSuccessIcon = document.querySelector('.icon-success--password'),
+        passwordErrorIcon = document.querySelector('.icon-error--password'),
+        passwordErrorMsg = document.querySelector('.error-message--password'),
+        passwordCaret = document.querySelector('.caret--password');
+    
+    let loadingState = document.querySelector('.loading-state'),
+        form = document.querySelector('form'),
+        completeState = document.querySelector('.complete-state');
+
+
+    async function playLoading() {
+      var loadingFrames = d.length;
+      for (var i = 0; i < loadingFrames; i++) {
+          document.querySelector(".loading-animation").innerHTML = "<pre>" + d[i] + "</pre>";
+          await new Promise(r => setTimeout(r, 84));
+      }
+      playLoading();
+    }
+
+    const type1 = new TypeIt("#type-effect--1", {
+      strings: "Welcome to",
+      speed: 75,
+      loop: false,
+      afterComplete: function (step, instance) {
+        type1.destroy();
+
+        // Initialize AsciiMorph
+        var element = document.querySelector('.ascii-pantheon');
+        AsciiMorph(element, {x: 0,y: 0});
+        var blank = [""]
+        var asciis = [
+          [""],
+          [
+          " ____             _   _                      ",
+          "|  _ \\ __ _ _ __ | |_| |__   ___  ___  _ __  ",
+          "| |_) / _` | '_ \\| __| '_ \\ / _ \\/ _ \\| '_ \\ ",
+          "|  __/ (_| | | | | |_| | | |  __/ (_) | | | |",
+          "|_|   \\__,_|_| |_|\\__|_| |_|\\___|\\___/|_| |_|",
+          "_____________________________________________"
+          ]
+        ]
+
+        AsciiMorph.render(asciis[0]);
+
+        var currentIndex = 0;
+
+        setTimeout(function() {
+          AsciiMorph.morph(asciis[1]);
+        }, 500);
+
+        const type2 = new TypeIt("#type-effect--2", {
+          strings: "Shall we begin?",
+          speed: 75,
+          loop: false,
+          afterComplete: function () {
+            type2.destroy();
+
+            setTimeout(() => {
+              const emailType = new TypeIt("#type-effect--email", {
+                speed: 25,
+                loop: false,
+                beforeString: function () {
+                  document.querySelector('#type-effect--email').classList.remove('hidden');
+                },
+                afterComplete: function () {
+                  emailType.destroy();
+                  document.querySelector('.email-container').classList.remove('hidden');
+                  document.querySelector('#email').focus();
+                }
+              }).go();
+            }, 1000);
+            
+          }
+        });
+
+        setTimeout(() => {
+          type2.go();
+        }, 1500);
+
+      }
+    }).go();
+
+    var granimInstance = new Granim({
+      element: '#terminal-gradient',
+      name: 'granim',
+      opacity: [1, 1],
+      states : {
+          "default-state": {
+              gradients: [
+                  ['#08AABF', '#FA635D', '#FF9B53'],
+                  ['#00A694', '#4DBC5D', '#08AABF']
+              ]
+          },
+          "error-state": {
+              gradients: [
+                  ['#B01515', '#CE3333', '#FF6F6F'],
+                  ['#EE6400', '#FF9345', '#E3BE00']
+              ]
+          },
+          "success-state": {
+              gradients: [
+                  ['#6FCF97', '#27AE60', '#219653'],
+                  ['#178C49', '#178C8C', '#017D7D']
+              ]
+          }
+      }
+    });
+    var granimInstance2 = new Granim({
+      element: '#terminal-border',
+      name: 'granim',
+      opacity: [1, 1],
+      states : {
+          "default-state": {
+              gradients: [
+                  ['#08AABF', '#FA635D', '#FF9B53'],
+                  ['#00A694', '#4DBC5D', '#08AABF']
+              ]
+          },
+          "error-state": {
+              gradients: [
+                  ['#B01515', '#CE3333', '#FF6F6F'],
+                  ['#EE6400', '#FF9345', '#E3BE00']
+              ]
+          },
+          "success-state": {
+              gradients: [
+                  ['#6FCF97', '#27AE60', '#219653'],
+                  ['#178C49', '#178C8C', '#017D7D']
+              ]
+          }
+      }
+    });
+
+    
+    emailInput.addEventListener("input", function(){
+      
+      el = emailInput.nextElementSibling;
+      emailValue = emailInput.value;
+
+      if (emailValue.length > 0) {
+
+        if(emailInput.checkValidity() == true) {
+          el.disabled = false;
+        } else {
+          el.disabled = true;
+        }
+      }
+      
+
+      if(emailValue.length > 3) {
+        if(emailInput.checkValidity() == true) {
+          granimInstance.changeState('success-state');
+          granimInstance2.changeState('success-state');
+        } else {
+          granimInstance.changeState('error-state');
+          granimInstance2.changeState('error-state');
+        }
+      } else {
+        granimInstance.changeState('default-state');
+        granimInstance2.changeState('default-state');
+      }
+    })
+
+    emailInput.addEventListener("change", function(){
+      emailCaret.classList.add('hidden');
+      if (emailInput.value.length > 0) {
+
+        if(emailInput.checkValidity() == false) {
+          emailErrorIcon.classList.remove('hidden');
+          emailSuccessIcon.classList.add('hidden');
+          emailErrorMsg.classList.remove('hidden');
+        } else {
+          emailSuccessIcon.classList.remove('hidden');
+          emailErrorIcon.classList.add('hidden');
+          emailErrorMsg.classList.add('hidden');
+        }
+      } else {
+        emailCaret.classList.remove('hidden');
+        emailSuccessIcon.classList.add('hidden');
+        emailErrorIcon.classList.add('hidden');
+      }
+    })
+
+    emailButton.addEventListener('click', function(){
+      document.querySelector('.features').classList.remove('scale-100', 'opacity-100')
+      document.querySelector('.features').classList.add('scale-90', 'opacity-0')
+      setTimeout(() => {
+        document.querySelector('main').classList.remove('gap-14');
+        document.querySelector('.features').classList.remove('w-full');
+        document.querySelector('.features').classList.add('w-0');
+      }, 350);
+      setTimeout(() => {
+        document.querySelector('.features').classList.add('hidden');
+      }, 1500);
+      
+      const nameType = new TypeIt("#type-effect--name", {
+        speed: 25,
+        loop: false,
+        beforeString: function () {
+          document.querySelector('#type-effect--name').classList.remove('hidden');
+          emailButton.classList.add('hidden')
+        },
+        afterComplete: function () {
+          nameType.destroy();
+          granimInstance.changeState('default-state');
+          granimInstance2.changeState('default-state');
+          document.querySelector('.name-container').classList.remove('hidden');
+          document.querySelector('#name').focus();
+        }
+      }).go();
+    })
+
+    
+    nameInput.addEventListener("input", function(){
+      
+      el = nameInput.nextElementSibling;
+      nameValue = nameInput.value;
+
+      if (nameValue.length > 0) {
+
+        if(nameInput.checkValidity() == true) {
+          el.disabled = false;
+        } else {
+          el.disabled = true;
+        }
+      }
+      
+      if(nameValue.length > 1) {
+        if(nameInput.checkValidity() == true) {
+          granimInstance.changeState('success-state');
+          granimInstance2.changeState('success-state');
+        } else {
+          granimInstance.changeState('error-state');
+          granimInstance2.changeState('error-state');
+        }
+      } else {
+        granimInstance.changeState('default-state');
+        granimInstance2.changeState('default-state');
+      }
+    })
+
+    nameInput.addEventListener("change", function(){
+      nameCaret.classList.add('hidden');
+      if (nameInput.value.length > 0) {
+
+        if(nameInput.checkValidity() == false) {
+          nameErrorIcon.classList.remove('hidden');
+          nameSuccessIcon.classList.add('hidden');
+          nameErrorMsg.classList.remove('hidden');
+        } else {
+          nameSuccessIcon.classList.remove('hidden');
+          nameErrorIcon.classList.add('hidden');
+          nameErrorMsg.classList.add('hidden');
+        }
+      } else {
+        nameCaret.classList.remove('hidden');
+        nameSuccessIcon.classList.add('hidden');
+        nameErrorIcon.classList.add('hidden');
+      }
+    })
+
+    nameButton.addEventListener('click', function(){
+      
+      const passType = new TypeIt("#type-effect--password", {
+        speed: 25,
+        loop: false,
+        beforeString: function () {
+          document.querySelector('#type-effect--password').classList.remove('hidden');
+          nameButton.classList.add('hidden')
+          passwordButton.classList.add('hidden')
+          submitButton.classList.remove('hidden')
+        },
+        afterComplete: function () {
+          passType.destroy();
+          granimInstance.changeState('default-state');
+          granimInstance2.changeState('default-state');
+          document.querySelector('.password-container').classList.remove('hidden');
+          document.querySelector('#password').focus();
+        }
+      }).go();
+    })
+
+    submitButton.addEventListener('click', function() {
+    
+      setTimeout(() => {
+        form.classList.remove('opacity-100', 'translate-y-0');
+        form.classList.add('opacity-0', 'translate-y-2');
+      }, 300);
+      setTimeout(() => {
+        form.classList.add('hidden');
+        loadingState.classList.remove('hidden');
+      }, 500);
+      setTimeout(() => {
+        loadingState.classList.remove('opacity-0', 'translate-y-2');
+        loadingState.classList.add('opacity-100', 'translate-y-0');
+        playLoading();
+      }, 800);
+
+      setTimeout(() => {
+        loadingState.classList.remove('opacity-100', 'translate-y-2')
+        loadingState.classList.add('opacity-0', 'translate-y-0')
+      }, 4000);
+      setTimeout(() => {
+        loadingState.classList.add('hidden')
+        completeState.classList.remove('hidden')
+      }, 4500);
+      setTimeout(() => {
+        completeState.classList.remove('opacity-0', '-translate-y-2')
+        completeState.classList.add('opacity-100', 'translate-y-0')
+        granimInstance.changeState('success-state');
+        granimInstance2.changeState('success-state');
+      }, 4600);
+
+      setTimeout(() => {
+
+        new TypeIt(".thanks-partner", {
+          speed: 50
+        })
+        .type("Account created!")
+        .pause(1500)
+        .delete()
+        .pause(500)
+        .type("We've sent you an email confirmation.")
+        .go();
+      }, 5500);
+
+      
+    })
+
+    
+    passwordInput.addEventListener("input", function(){
+      
+      el = passwordInput.nextElementSibling;
+      passwordValue = passwordInput.value;
+      let result = zxcvbn(passwordValue); 
+
+      if (passwordValue.length > 0) {
+        
+        submitButton.classList.remove('opacity-0');
+        submitButton.disabled = false;
+        //console.log(zxcvbn(passwordValue, user_inputs=[]))
+        let passwordStrength = result.score;
+        let strengthMeter = document.querySelectorAll('.strength-meter');
+
+        if(passwordStrength > 0) {
+          for (let index = 0; index < 4; index++) {
+            if(passwordStrength == index) {
+              document.querySelector(`.strength-meter--${passwordStrength}`).classList.add('opacity-25');
+              if(passwordStrength >= 1) {
+                document.querySelector(`.strength-meter--1`).classList.remove('bg-white');
+                document.querySelector(`.strength-meter--1`).classList.add('bg-neon-green');
+              } else {
+                document.querySelector(`.strength-meter--1`).classList.remove('bg-neon-green', 'opacity-25');
+              }
+              if(passwordStrength >= 2) {
+                document.querySelector(`.strength-meter--2`).classList.remove('bg-white');
+                document.querySelector(`.strength-meter--2`).classList.add('bg-neon-green');
+              } else {
+                document.querySelector(`.strength-meter--2`).classList.remove('bg-neon-green', 'opacity-25');
+              }
+              if(passwordStrength >= 3) {
+                document.querySelector(`.strength-meter--3`).classList.remove('bg-white');
+                document.querySelector(`.strength-meter--3`).classList.add('bg-neon-green');
+              } else {
+                document.querySelector(`.strength-meter--3`).classList.remove('bg-neon-green', 'opacity-25');
+              }
+            }
+          }
+        }
+
+        if(passwordStrength == 0) {
+          strengthMeter.forEach(element => {
+            element.classList.remove('opacity-100', 'bg-red-500')
+            
+          });
+        }
+        
+      } else {
+        submitButton.disabled = true;
+      }
+      
+      if(nameValue.length > 1) {
+        if(nameInput.checkValidity() == true) {
+          granimInstance.changeState('success-state');
+          granimInstance2.changeState('success-state');
+        } else {
+          granimInstance.changeState('error-state');
+          granimInstance2.changeState('error-state');
+        }
+      } else {
+        granimInstance.changeState('default-state');
+        granimInstance2.changeState('default-state');
+      }
+    })
+
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,82 @@
+---
+import Input from '../components/Input.astro';
+import TerminalHeader from '../components/TerminalHeader.astro';
+import StrengthMeter from '../components/StrengthMeter.astro';
+import AsciiAnimation from '../components/AsciiAnimation.astro';
+import LoadingAnimation from '../components/Loading.astro';
+
+---
+<style>
+.border {
+    border-radius: 0.85rem;
+    inset: 0px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    margin: -2px;
+    position: absolute;
+    z-index: 1;
+    opacity: .2;
+    border: 0;
+}
+.gradient {
+    border-radius: 0.85rem;
+    inset: 0px;
+    filter: blur(200px);
+    transform: scale(.7);
+    opacity: .8;
+    margin: -2px;
+    position: absolute;
+    z-index: -2;
+}
+.terminal-container {
+    box-shadow: 0px 60px 66px -32px #000000;
+    max-width: 644px;
+    height: 660px;
+}
+</style>
+<div class="terminal-container relative h-full w-full">
+    <canvas class="gradient terminal-gradient w-full h-full" id="terminal-gradient"></canvas>
+    <canvas class="border terminal-gradient" id="terminal-border"></canvas>
+    <div class="terminal relative rounded-xl shadow shadow-2xl h-full">
+        <div class="w-full h-full flex flex-col relative z-10 rounded-xl overflow-hidden border-0 bg-black">
+            <TerminalHeader />
+            <!-- Form -->
+            <div class="bg-black p-6 overflow-hidden flex flex-col w-full h-full">
+                <form class="flex flex-col w-full h-full font-mono transform translate-y-0 opacity-100 duration-500 ease">
+
+                    <div class="mb-auto">
+                        <span id="type-effect--1" class="type-effect text-sm md:text-base"></span>
+                        <pre class="text-2xs sm:text-xs ascii-pantheon text-neon-green block">                               
+                        </pre>
+                        <span id="type-effect--2" class="type-effect text-sm md:text-base block mt-6"></span>
+
+                        <Input type="email" name="email" label="What's your work email address?" error="Email address is invalid." />
+
+                        <Input type="text" name="name" label="What shall we call you?" />
+
+                        <Input type="password" name="password" label="Create a password" error="Password is too weak" />
+                        <div class="flex ml-8 mt-2 w-96 flex-row space-x-2">
+                            <StrengthMeter number="1" />
+                            <StrengthMeter number="2" />
+                            <StrengthMeter number="3" />
+                        </div>
+                    </div>
+                    <button disabled="true" class="hidden submit-button opacity-0 w-full py-4 bg-neon-green bg-opacity-20 rounded-lg text-neon-green font-mono hover:bg-opacity-100 hover:text-black focus:outline-none focus:ring-4 focus:ring-opacity-50 focus:ring-neon-green disabled:bg-white disabled:bg-opacity-10 disabled:text-white disabled:cursor-not-allowed transition duration-200 ease" type="button">Create Account</button>
+                </form>
+
+                <!-- Loading State -->
+                <div class="flex flex-col relative h-full items-center text-center justify-center w-full h-full space-y-4 hidden opacity-0 loading-state transform translate-y-2 opacity-0 duration-500 ease">
+                    <LoadingAnimation />
+                    <h2 class="text-neon-green font-mono text-sm sm:text-base text-lg creating-account">Creating your account</h2>
+                </div>
+            
+                <!-- Complete State -->
+                <div class="hidden flex flex-col relative space-y-4 h-full items-center text-center justify-center w-full complete-state transform -translate-y-2 opacity-0 duration-500 ease">
+                    <AsciiAnimation />
+                    <h2 class="text-white text-sm sm:text-base text-lg font-mono mb-2 thanks-partner"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,26 @@
+---
+let { classes, type } = Astro.props;
+---
+<style>
+.checkmark {
+    width: 20px;
+    height: 20px;
+}
+
+.checkmark__check {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: stroke .6s cubic-bezier(0.650, 0.000, 0.450, 1.000) forwards;
+    stroke-width: 4;
+    stroke: currentColor;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+</style>
+<svg class="checkmark flex items-center justify-center " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <path class="${classes} checkmark__check" d="M33.74 47.584l9.374 9.373L63.032 37.04" fill="none" stroke-linecap="square" />
+</svg>

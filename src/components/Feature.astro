@@ -1,0 +1,13 @@
+---
+let { title, description, icon } = Astro.props;
+---
+<style>
+.icon {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+}
+</style>
+<li class="flex flex-col mb-12">
+    <img class="icon w-12 h-12 mb-3" src="/images/${icon}.svg" alt="${title}">
+    <h3 class="text-lg font-bold font-sans-serif m-0 p-0 mb-1">{title}</h3>
+    <p class="opacity-60 text-lg leading-snug">{description}</p>
+</li>
