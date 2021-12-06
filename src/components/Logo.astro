@@ -1,0 +1,71 @@
+<style>
+.glitch:after, .glitch:before {
+  position: absolute;
+  background: #202023;
+  width: 40%;
+  content: attr(data-text);
+  clip: rect(0, 900px, 0, 0);
+}
+.glitch:after {
+  animation: glitch-anim 3s infinite linear alternate-reverse;
+  left: 1px;
+  text-shadow: 1px 0 red;
+}
+.glitch:before {
+  animation: glitch-anim-2 4s infinite linear alternate-reverse;
+  left: -1px;
+  text-shadow: -1px 0 limegreen;
+}
+@keyframes glitch-anim {
+  0% { clip: rect(3px, 9999px, 93px, 0); }
+  5% { clip: rect(53px, 9999px, 78px, 0); }
+  10% { clip: rect(10px, 9999px, 75px, 0); }
+  15% { clip: rect(32px, 9999px, 40px, 0); }
+  20% { clip: rect(65px, 9999px, 62px, 0); }
+  25% { clip: rect(31px, 9999px, 14px, 0); }
+  30% { clip: rect(94px, 9999px, 87px, 0); }
+  35% { clip: rect(81px, 9999px, 41px, 0); }
+  40% { clip: rect(45px, 9999px, 50px, 0); }
+  45% { clip: rect(82px, 9999px, 41px, 0); }
+  50% { clip: rect(71px, 9999px, 3px, 0); }
+  55% { clip: rect(75px, 9999px, 60px, 0); }
+  60% { clip: rect(20px, 9999px, 49px, 0); }
+  65% { clip: rect(67px, 9999px, 92px, 0); }
+  70% { clip: rect(47px, 9999px, 55px, 0); }
+  75% { clip: rect(63px, 9999px, 90px, 0); }
+  80% { clip: rect(70px, 9999px, 92px, 0); }
+  85% { clip: rect(41px, 9999px, 60px, 0); }
+  90% { clip: rect(56px, 9999px, 79px, 0); }
+  95% { clip: rect(21px, 9999px, 68px, 0); }
+  100% { clip: rect(15px, 9999px, 72px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip: rect(65px, 9999px, 99px, 0); }
+  5% { clip: rect(86px, 9999px, 70px, 0); }
+  10% { clip: rect(79px, 9999px, 60px, 0); }
+  15% { clip: rect(15px, 9999px, 88px, 0); }
+  20% { clip: rect(24px, 9999px, 5px, 0); }
+  25% { clip: rect(35px, 9999px, 3px, 0); }
+  30% { clip: rect(56px, 9999px, 11px, 0); }
+  35% { clip: rect(2px, 9999px, 38px, 0); }
+  40% { clip: rect(60px, 9999px, 50px, 0); }
+  45% { clip: rect(27px, 9999px, 4px, 0); }
+  50% { clip: rect(79px, 9999px, 12px, 0); }
+  55% { clip: rect(23px, 9999px, 8px, 0); }
+  60% { clip: rect(65px, 9999px, 55px, 0); }
+  65% { clip: rect(19px, 9999px, 7px, 0); }
+  70% { clip: rect(43px, 9999px, 17px, 0); }
+  75% { clip: rect(65px, 9999px, 91px, 0); }
+  80% { clip: rect(45px, 9999px, 66px, 0); }
+  85% { clip: rect(3px, 9999px, 2px, 0); }
+  90% { clip: rect(58px, 9999px, 81px, 0); }
+  95% { clip: rect(29px, 9999px, 20px, 0); }
+  100% { clip: rect(82px, 9999px, 28px, 0); }
+}
+</style>
+<div class="flex flex-row space-x-2 items-center text-white">
+    <svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.22 3.193a2.654 2.654 0 0 1 1.56 0l3.98 1.224a22.295 22.295 0 0 1 5.855 2.786c1.405.94.74 3.13-.95 3.13H6.334c-1.689 0-2.355-2.19-.95-3.13a22.295 22.295 0 0 1 5.854-2.786l3.981-1.224Zm.972 1.912a.655.655 0 0 0-.384 0L11.827 6.33a20.294 20.294 0 0 0-4.493 2.004h17.332a20.294 20.294 0 0 0-4.493-2.004l-3.98-1.224Z" fill="currentColor"/><path d="M5.667 28a1 1 0 0 1 1-1h18.666a1 1 0 1 1 0 2H6.667a1 1 0 0 1-1-1ZM8.333 22.667a1 1 0 1 0 2 0v-8a1 1 0 0 0-2 0v8ZM16 23.667a1 1 0 0 1-1-1v-8a1 1 0 0 1 2 0v8a1 1 0 0 1-1 1ZM21.667 22.667a1 1 0 1 0 2 0v-8a1 1 0 0 0-2 0v8Z" fill="currentColor"/></svg>
+    <h1 data-text="Pantheon" class="font-body font-black text-lg glitch relative">Pantheon</h1>
+</div>
+

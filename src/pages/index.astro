@@ -3,6 +3,7 @@
 import H1 from '../components/H1.astro';
 import Feature from '../components/Feature.astro';
 import Terminal from '../components/Terminal.astro';
+import Logo from '../components/Logo.astro';
 
 
 // Full Astro Component Syntax:
@@ -20,7 +21,7 @@ import Terminal from '../components/Terminal.astro';
   <body class="mx-auto">
     <nav class="flex mx-auto flex-row items-center justify-between max-w-screen-xl py-6 md:py-12 px-4">
       <a href="/">
-        <img src="/images/logo.svg" alt="Pantheon">
+        <Logo />
       </a>
       <div class="flex flex-row items-center space-x-2">
       <h4 class="opacity-50 hidden sm:block font-sans">Already a member?</h4>
@@ -100,12 +101,11 @@ import Terminal from '../components/Terminal.astro';
         var asciis = [
           [""],
           [
-          " ____             _   _                      ",
-          "|  _ \\ __ _ _ __ | |_| |__   ___  ___  _ __  ",
-          "| |_) / _` | '_ \\| __| '_ \\ / _ \\/ _ \\| '_ \\ ",
-          "|  __/ (_| | | | | |_| | | |  __/ (_) | | | |",
-          "|_|   \\__,_|_| |_|\\__|_| |_|\\___|\\___/|_| |_|",
-          "_____________________________________________"
+          "  ____             _   _                      ",
+          " |  _ \\ __ _ _ __ | |_| |__   ___  ___  _ __  ",
+          " | |_) / _` | '_ \\| __| '_ \\ / _ \\/ _ \\| '_ \\ ",
+          " |  __/ (_| | | | | |_| | | |  __/ (_) | | | |",
+          " |_|   \\__,_|_| |_|\\__|_| |_|\\___|\\___/|_| |_|",
           ]
         ]
 
